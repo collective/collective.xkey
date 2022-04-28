@@ -1,0 +1,5 @@
+===============
+collective.xkey
+===============
+
+User documentation
