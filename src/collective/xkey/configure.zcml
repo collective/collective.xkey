@@ -1,0 +1,30 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.xkey">
+
+  <adapter factory=".purge.UuidPurgePath" name="collective.xkey.uuid" />
+
+  <!-- Default Plone adapter -->
+  <adapter factory=".adapter.content_adapter" />
+  <adapter factory=".adapter.resource_directory_adapter" />
+  <adapter zcml:condition="installed Products.ResourceRegistry" factory=".adapter.resource_registry_adapter" />
+
+  <!-- Mutator: plone.transformchain order 11000 -->
+  <adapter factory=".events.MutatorTransform" name="collective.xkey.mutator" />
+
+  <subscriber handler=".events.handle_request_after_traversal" />
+
+  <!-- Utility browser view @@mark_involved -->
+  <browser:page
+    for = "*"
+    name = "mark_involved"
+    class = ".utils.MarkInvolvedView"
+    permission = "zope2.View"
+    />
+
+</configure>

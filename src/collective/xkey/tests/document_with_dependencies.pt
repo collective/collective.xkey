@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Document view with</title>
+    </head>
+    <body>
+
+        Document
+
+        <!-- Arbitrary dependencies -->
+        <tal:mark-involved tal:define="involved context/@@mark_involved/custom-tag-from-template" />
+        <tal:mark-involved tal:define="auxiliary_document2 python:view.auxiliary_document2; involved auxiliary_document2/@@mark_involved" />
+
+    </body>
+</html>
