@@ -30,9 +30,9 @@ collective.xkey
 
 Use Varnish's `xkey module <https://github.com/varnish/varnish-modules>`_ for tag-based cache invalidation in Plone.
 
-This add-on is heavily inspired by and built upon on `collective.purgebyid <https://github.com/collective/collective.purgebyid>`_ (major credit goes to its contributors), but is more adapted to xkey's specific requirements.
+This add-on is heavily inspired by and built upon `collective.purgebyid <https://github.com/collective/collective.purgebyid>`_ (major credit goes to its contributors), but it is more adapted to xkey's specific requirements.
 It uses tags in the same manner, but instead of banning objects with tags, it purges them with the efficient xkey implementation.
-Doing so lowers the memory consumption and improves the performance.
+Doing so lowers the memory consumption and improves the performance of Varnish.
 
 The default implementation covers basic use-cases, but it can be extended for your needs.
 
@@ -131,7 +131,7 @@ The installation is two-fold. On the **Plone** side, you need to install collect
         collective.xkey
 
 
-and then running ``bin/buildout``. Upon running up your instance, you may see the new header. No further setup for specific Plone sites is required.
+and then running ``bin/buildout``. Upon running up your instance, you may see the new header. No need to install this add-on for your Plone site.
 
 On the **Varnish** side, you need to update the configuration file (e.g. ``/etc/varnish/default.vcl``)::
 

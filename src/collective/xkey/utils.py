@@ -10,7 +10,7 @@ from zope.traversing.interfaces import ITraversable
 
 KEY = "collective.xkey.involved"
 logger = logging.getLogger("collective.xkey")
-
+_marker = object()
 
 def mark_involved_objects(request, objs, stoponfirst=False):
     """Retrieve the involved ids by the given objects. Objects might be
@@ -34,17 +34,13 @@ def mark_involved_objects(request, objs, stoponfirst=False):
 def mark_involved(request, single_id):
     """Mark an id as being involved for this request.
 
-    :param request: _description_
-    :type request: _type_
-    :param single_id: _description_
-    :type single_id: _type_
+    :param request: request
+    :param single_id: single involved id
+    :type single_id: basestring
     """
     logger.debug("mark request %r with %s" % (request, single_id))
-    annotations = IAnnotations(request)
-    if annotations.get(KEY, None):
-        annotations[KEY].add(single_id)
-    else:
-        annotations[KEY] = set([single_id])
+    involved_ids = get_involved_ids(request)
+    involved_ids.add(single_id)
 
 
 def get_involved_ids(request):
@@ -55,7 +51,10 @@ def get_involved_ids(request):
     :rtype: set
     """
     annotations = IAnnotations(request)
-    return annotations.get(KEY, set())
+    involved_ids = annotations.get(KEY, _marker)
+    if involved_ids is _marker:
+        involved_ids = annotations[KEY] = set()
+    return involved_ids
 
 
 @implementer(ITraversable)

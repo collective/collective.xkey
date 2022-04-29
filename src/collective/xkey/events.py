@@ -61,7 +61,7 @@ class MutatorTransform(object):
 def handle_request_after_traversal(event):
     """handle "IPubAfterTraversal"."""
     try:
-        # XXX: stoponfirst needs to be False?
+        # XXX: stoponfirst=True to get the IUUDs of the first parent
         mark_involved_objects(event.request, event.request.get("PARENTS", []), stoponfirst=True)
         published = event.request.get("PUBLISHED", None)
         if published:
