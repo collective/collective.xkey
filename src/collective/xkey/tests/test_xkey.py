@@ -132,6 +132,7 @@ class TestHeaders(unittest.TestCase):
         xkey_header = browser.headers["xkey"]
         self.assertIn(IUUID(document), xkey_header)
         self.assertIn(IUUID(auxiliary_document), xkey_header)
+        # auxiliary_document2 is marked in the template
         self.assertIn(IUUID(auxiliary_document2), xkey_header)
         self.assertIn("custom-tag-from-view", xkey_header)
         self.assertIn("custom-tag-from-template", xkey_header)
