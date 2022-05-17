@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
+import os
 
 from ZODB.POSException import ConflictError
 from ZPublisher.interfaces import IPubAfterTraversal
@@ -13,6 +14,9 @@ from collective.xkey.utils import get_involved_ids
 
 
 logger = logging.getLogger("collective.xkey")
+
+#: This env variable should be set in the buildout configuration.
+DISABLE_XKEYS = os.environ.get("DISABLE_XKEYS", "").upper() in ["TRUE", "T", "YES", "Y"]
 
 
 @implementer(ITransform)
@@ -53,7 +57,7 @@ class MutatorTransform(object):
     def mutate(self):
         request = self.request
         involved = get_involved_ids(request)
-        if involved:
+        if involved and not DISABLE_XKEYS:
             request.response.setHeader("Xkey", " ".join(involved))
 
 
