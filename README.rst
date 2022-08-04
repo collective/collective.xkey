@@ -28,6 +28,8 @@
 collective.xkey
 ===============
 
+.. note:: This add-on is now deprecated. All improvements here have been merged into collective.purgebyid. You may use that add-on instead.
+
 Use Varnish's `xkey module <https://github.com/varnish/varnish-modules>`_ for tag-based cache invalidation in Plone.
 
 This add-on is heavily inspired by and built upon `collective.purgebyid <https://github.com/collective/collective.purgebyid>`_ (major credit goes to its contributors), but it is more adapted to xkey's specific requirements.

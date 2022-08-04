@@ -20,6 +20,7 @@ setup(
     # Get more from https://pypi.org/classifiers/
     classifiers=[
         "Environment :: Web Environment",
+        "Development Status :: 7 - Inactive",
         "Framework :: Plone",
         "Framework :: Plone :: Addon",
         "Framework :: Plone :: 5.2",
