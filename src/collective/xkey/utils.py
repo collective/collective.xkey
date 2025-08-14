@@ -38,6 +38,8 @@ def mark_involved(request, single_id):
     :param single_id: single involved id
     :type single_id: basestring
     """
+    if not isinstance(single_id, basestring) or not single_id:
+        return
     logger.debug("mark request %r with %s" % (request, single_id))
     involved_ids = get_involved_ids(request)
     involved_ids.add(single_id)

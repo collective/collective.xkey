@@ -52,7 +52,7 @@ class MutatorTransform(object):
 
     def mutate(self):
         request = self.request
-        involved = get_involved_ids(request)
+        involved = list(filter(bool, get_involved_ids(request)))
         if involved:
             request.response.setHeader("Xkey", " ".join(involved))
 
